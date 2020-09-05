@@ -49,6 +49,24 @@ class DeskewService():
             angle = 90 + angle
         return -1.0 * angle
 
+        # As your page gets more complex you might want to look into more advanced angle calculations
+        #
+        # Maybe use the average angle of all contours.
+        # allContourAngles = [cv2.minAreaRect(c)[-1] for c in contours]
+        # angle = sum(allContourAngles) / len(allContourAngles)
+        #
+        # Maybe take the angle of the middle contour.
+        # middleContour = contours[len(contours) // 2]
+        # angle = cv2.minAreaRect(middleContour)[-1]
+        #
+        # Maybe average angle between largest, smallest and middle contours.
+        # largestContour = contours[0]
+        # middleContour = contours[len(contours) // 2]
+        # smallestContour = contours[-1]
+        # angle = sum([cv2.minAreaRect(largestContour)[-1], cv2.minAreaRect(middleContour)[-1], cv2.minAreaRect(smallestContour)[-1]]) / 3
+        #
+        # Experiment and find out what works best for your case.
+
     # Deskew image
     def deskew(self, cvImage) -> Tuple:
         angle = self.getSkewAngle(cvImage)
