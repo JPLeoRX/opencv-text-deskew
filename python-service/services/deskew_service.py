@@ -47,6 +47,10 @@ class DeskewService():
         angle = minAreaRect[-1]
         if angle < -45:
             angle = 90 + angle
+            return -1.0 * angle
+        elif angle > 45:
+            angle = 90 - angle
+            return angle
         return -1.0 * angle
 
         # As your page gets more complex you might want to look into more advanced angle calculations
